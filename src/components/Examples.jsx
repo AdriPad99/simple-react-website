@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { CORE_CONCEPTS, EXAMPLES } from '../data';
+import { EXAMPLES } from '../data';
 import TabButton from './TabButton/TabButton.jsx';
-import CoreConcept from './CoreConcept.jsx';
+import Tabs from './Tabs.jsx';
+import Section from './Section.jsx';
 
 export default function Examples() {
     const [selectedTopic, setSelectedTopic] = useState();
@@ -28,40 +29,41 @@ export default function Examples() {
     }
 
     return (
-        <section id='examples'>
-            <h2>Examples</h2>
-            <menu>
-                <TabButton
-                    isSelected={selectedTopic === 'components'}
-                    handleButtonClick={() => handleClick('components')}
-                >
-                    Components
-                </TabButton>
+        <Section title='Examples' id='examples'>
+            <Tabs
+                buttons={
+                    <>
+                        <TabButton
+                            isSelected={selectedTopic === 'components'}
+                            onClick={() => handleClick('components')}
+                        >
+                            Components
+                        </TabButton>
 
-                <TabButton
-                    isSelected={selectedTopic === 'jsx'}
-                    handleButtonClick={() => handleClick('jsx')}
-                >
-                    JSX
-                </TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'jsx'}
+                            onClick={() => handleClick('jsx')}
+                        >
+                            JSX
+                        </TabButton>
 
-                <TabButton
-                    isSelected={selectedTopic === 'props'}
-                    handleButtonClick={() => handleClick('props')}
-                >
-                    Props
-                </TabButton>
+                        <TabButton
+                            isSelected={selectedTopic === 'props'}
+                            onClick={() => handleClick('props')}
+                        >
+                            Props
+                        </TabButton>
 
-                <TabButton
-                    isSelected={selectedTopic === 'state'}
-                    handleButtonClick={() => handleClick('state')}
-                >
-                    State
-                </TabButton>
-            </menu>
-
-            {tabContent}
-
-        </section>
+                        <TabButton
+                            isSelected={selectedTopic === 'state'}
+                            onClick={() => handleClick('state')}
+                        >
+                            State
+                        </TabButton>
+                    </>}
+            >
+                {tabContent}
+            </Tabs>
+        </Section>
     )
 }
